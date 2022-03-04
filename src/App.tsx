@@ -1,13 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
+import { Banner } from './components/Banner/Banner';
 
 function App() {
     return (
         <div className="App">
+            <Banner
+                title="COVID-SHARE"
+                message={'Got Covid? Get Better.'}
+                gradient={true}
+                color={'#a62828'}
+                secondColor={'#d6722b'}
+            />
             <ErrorBoundary>
-                <header className="App-header">COVID SHARE</header>
+                <div></div>
             </ErrorBoundary>
         </div>
     );
