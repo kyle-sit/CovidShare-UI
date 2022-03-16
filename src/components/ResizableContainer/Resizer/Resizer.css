@@ -1,0 +1,41 @@
+.resizer {
+    vertical-align: top;
+    position: relative;
+    cursor: col-resize;
+    box-sizing: border-box;
+    z-index: 999;
+    opacity: 0.5;
+}
+
+.resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+.resizer.resizer_horizontal {
+    border-left: 5px solid rgba(255, 255, 255, 0);
+    border-right: 5px solid rgba(255, 255, 255, 0);
+    margin: 0px -5px;
+    height: 100%;
+    cursor: col-resize;
+    display: inline-block;
+}
+
+.resizer.resizer_vertical {
+    border-top: 5px solid rgba(255, 255, 255, 0);
+    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    margin: -5px 0px;
+    width: 100%;
+    cursor: row-resize;
+    display: block;
+}
+
+.resizer.resizer_horizontal:hover {
+    border-left: 5px solid rgba(0, 0, 0, 0.5);
+    border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.resizer.resizer_vertical:hover {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}

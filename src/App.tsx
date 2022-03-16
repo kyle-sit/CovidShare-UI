@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { Banner } from './components/Banner/Banner';
+import ResizableContainer from './components/ResizableContainer/ResizableContainer';
 
 function App() {
     return (
@@ -14,7 +15,9 @@ function App() {
                 secondColor={'#d6722b'}
             />
             <ErrorBoundary>
-                <div></div>
+                <ResizableContainer id={'app-container'} alignment="horizontal">
+                    <div>what</div>
+                </ResizableContainer>
             </ErrorBoundary>
         </div>
     );
