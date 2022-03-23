@@ -3,8 +3,8 @@ import './ResizablePane.css';
 import * as React from 'react';
 
 export interface ResizablePaneProps {
-    width: string | number;
-    height: string | number;
+    width?: string | number;
+    height?: string | number;
     hidden?: boolean;
     className?: string;
 }

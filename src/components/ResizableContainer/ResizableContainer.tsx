@@ -62,7 +62,7 @@ const noop = () => {};
 
 export default class ResizableContainer extends React.Component<ResizableContainerProps, ResizeableContainerState> {
     public static defaultProps: Partial<ResizableContainerProps> = {
-        handleColor: 'black',
+        handleColor: 'white',
         handleSize: 1,
         minWidth: 0,
         minHeight: 0,
@@ -73,7 +73,7 @@ export default class ResizableContainer extends React.Component<ResizableContain
         hiddenPanes: [],
     };
 
-    private container: HTMLElement | null = null;
+    private container: HTMLElement | null;
     private mouseMoveListener: any;
     private mouseUpListener: any;
     private fireResizeEvent: any;
@@ -97,7 +97,7 @@ export default class ResizableContainer extends React.Component<ResizableContain
 
         const numChildren = this.props.children ? (this.props.children as any).length : 0;
         this.state = {
-            sizes: Array.from(Array(numChildren), () => ({ width: '0', height: '0' })),
+            sizes: Array.from(Array(numChildren), (_) => ({ width: '0', height: '0' })),
         };
 
         this.preventChildRender = true;
@@ -124,7 +124,34 @@ export default class ResizableContainer extends React.Component<ResizableContain
         this.fireResizeCallback(this.state.sizes);
     }
 
-    public componentWillReceiveProps() {}
+    public componentWillReceiveProps(nextProps: ResizableContainerProps) {
+        if (this.panesHaveChanged(nextProps)) {
+            const computedStyle = this.container ? getComputedStyle(this.container) : null;
+            const width = parseFloat(computedStyle && computedStyle.width !== null ? computedStyle.width : '0');
+            const height = parseFloat(computedStyle && computedStyle.height !== null ? computedStyle.height : '0');
+            this.initializeSize(width, height, this.props);
+        }
+    }
+
+    public render() {
+        const width = this.props.width;
+        const height = this.props.height;
+
+        // Wrap resizable panes around child components and insert resizers between panes
+        const content = React.Children.toArray(this.props.children)
+            .map(this.createPane, this)
+            .reduce(this.insertResizer.bind(this), []);
+
+        return (
+            <div
+                className="resizable-container"
+                style={{ width, height, ...this.props.style }}
+                ref={(el) => (this.container = el)}
+            >
+                {this.preventChildRender ? null : content}
+            </div>
+        );
+    }
 
     public resetSizes() {
         const computedStyle = this.container ? getComputedStyle(this.container) : null;
@@ -187,7 +214,7 @@ export default class ResizableContainer extends React.Component<ResizableContain
      */
     private getUserDefinedSize(props, child: React.ReactElement<any>, childIndex: number) {
         const numVisible = this.getVisibleChildren(props.children, props.hiddenPanes).length;
-        if (childIndex !== numVisible - 1) {
+        if (childIndex !== numVisible - 1 && this.isResizablePane(child)) {
             // The last child element always takes up all the available room
             if (this.isVertical() && child.props.height) {
                 return this.getPixelSize(child.props.height, this.container ? this.container.clientHeight : 0);
@@ -288,6 +315,10 @@ export default class ResizableContainer extends React.Component<ResizableContain
         }
     }
 
+    private isResizablePane(el: React.ReactElement<any>): boolean {
+        return ResizablePane === el.type;
+    }
+
     private panesHaveChanged(nextProps: ResizableContainerProps) {
         const hiddenPanes = this.props.hiddenPanes || [];
         return nextProps.hiddenPanes && nextProps.hiddenPanes.some((hidden, i) => hidden !== hiddenPanes[i]);
@@ -322,13 +353,17 @@ export default class ResizableContainer extends React.Component<ResizableContain
      * @param childIndex Index of the child component
      * @returns
      */
-    private createPane(child: React.ReactElement<any>, childIndex: number) {
+    private createPane(child: React.ReactChild | React.ReactFragment | React.ReactPortal, childIndex: number) {
         const width = this.state.sizes[childIndex].width;
         const height = this.state.sizes[childIndex].height;
         const key = 'child' + childIndex;
         const props = { key, width, height };
 
-        return <ResizablePane {...props}>{child}</ResizablePane>;
+        return this.isResizablePane(child as React.ReactElement) ? (
+            React.cloneElement(child as React.ReactElement, props)
+        ) : (
+            <ResizablePane {...props}>{child}</ResizablePane>
+        );
     }
 
     /**

@@ -14,10 +14,11 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
         "jsx": "react-jsx",
+        "noImplicitReturns": false,
         "noImplicitAny": false,
-        "noImplicitThis": false
+        "noImplicitThis": false,
+        "strictNullChecks": false
     },
     "include": ["src"]
 }

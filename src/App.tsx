@@ -3,8 +3,22 @@ import './App.css';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { Banner } from './components/Banner/Banner';
 import ResizableContainer from './components/ResizableContainer/ResizableContainer';
+import ResizablePane from './components/ResizableContainer/ResizablePane/ResizablePane';
 
 function App() {
+    // Get ref to the resize container so we can forcibly update its panes when the user resizes window
+    const resizeContainer = React.useRef<ResizableContainer>(null);
+
+    // Set up window resize listener so resizable panes will scale accordingly
+    React.useEffect(() => {
+        const resetSizes = () => resizeContainer.current?.resetSizes();
+        window.addEventListener('resize', resetSizes);
+
+        return () => {
+            window.removeEventListener('resize', resetSizes);
+        };
+    }, []);
+
     return (
         <div className="App">
             <Banner
@@ -15,8 +29,19 @@ function App() {
                 secondColor={'#d6722b'}
             />
             <ErrorBoundary>
-                <ResizableContainer id={'app-container'} alignment="horizontal">
-                    <div>what</div>
+                <ResizableContainer
+                    id={'app-container'}
+                    alignment="horizontal"
+                    width="100%"
+                    height="100%"
+                    ref={resizeContainer}
+                >
+                    <ResizablePane width="20%" height="100%">
+                        <div>Pane 1</div>
+                    </ResizablePane>
+                    <ResizablePane>
+                        <div>Pane 2</div>
+                    </ResizablePane>
                 </ResizableContainer>
             </ErrorBoundary>
         </div>
