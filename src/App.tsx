@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
-import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
-import { Banner } from './components/Banner/Banner';
-import ResizableContainer from './components/ResizableContainer/ResizableContainer';
-import ResizablePane from './components/ResizableContainer/ResizablePane/ResizablePane';
+import { Banner, ErrorBoundary, PortalContainer, ResizableContainer, ResizablePane } from './core';
 
 function App() {
     // Get ref to the resize container so we can forcibly update its panes when the user resizes window
@@ -44,6 +41,9 @@ function App() {
                     </ResizablePane>
                 </ResizableContainer>
             </ErrorBoundary>
+
+            {/* Popup windows will be rendered here no matter how deep in component tree they are declared */}
+            <PortalContainer />
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 interface Props {
     /** callbacks for button events */
@@ -35,7 +35,7 @@ export const Button: React.FC<Props> = ({
     divRef,
     ...remainingProps
 }) => {
-    const classes = classNames(className, disabled && 'disabled');
+    const classes = classnames(className, disabled && 'disabled');
 
     const allProps = {
         className: classes,
