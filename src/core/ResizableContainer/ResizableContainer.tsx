@@ -5,7 +5,7 @@ import * as React from 'react';
 import ResizablePane from './ResizablePane/ResizablePane';
 import ResizeListeners from './ResizeEvents';
 import Resizer from './Resizer/Resizer';
-import { pauseEvent } from '../../util/function';
+import { pauseEvent } from '../../util/';
 
 export interface ResizableContainerProps {
     // ID of this container

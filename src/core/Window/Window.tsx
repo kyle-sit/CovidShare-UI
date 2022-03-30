@@ -2,7 +2,7 @@ import './Window.css';
 
 import * as React from 'react';
 
-import { RenderableContent } from '../../util/react';
+import { RenderableContent } from '../../util';
 import { Portal, Button, IconButton } from '..';
 import { Rnd } from 'react-rnd';
 

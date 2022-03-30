@@ -4,6 +4,7 @@ import { ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 import Portal, { PORTAL_ID, PortalContainer } from './Portal/Portal';
 import ResizableContainer, { ResizablePane, Resizer } from './ResizableContainer';
 import Window from './Window/Window';
+import Toast from './Toast/Toast';
 
 export {
     Banner,
@@ -16,5 +17,6 @@ export {
     ResizableContainer,
     ResizablePane,
     Resizer,
+    Toast,
     Window,
 };
