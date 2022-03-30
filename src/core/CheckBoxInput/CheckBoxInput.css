@@ -1,0 +1,54 @@
+div.checkbox {
+    padding-left: 0;
+}
+
+div.checkbox > label {
+    font-weight: bold;
+}
+
+input[type='checkbox'].checkbox {
+    display: none;
+}
+
+input[type='checkbox'] + span {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: left;
+}
+
+input[type='checkbox']:active + span {
+    background-color: rgb(180, 180, 180);
+}
+
+input[type='checkbox']:checked + span {
+    background-color: rgb(51, 122, 183);
+}
+
+input[type='checkbox']:checked + span:after {
+    content: '&#x2713';
+    font: 11px monospace;
+    color: white;
+    position: relative;
+    left: 2px;
+    bottom: 2px;
+}
+
+input[type='checkbox']:indeterminate + span {
+    background-color: rgb(51, 122, 183);
+    line-height: 12px;
+}
+
+input[type='checkbox']:indeterminate + span:after {
+    content: '-';
+    font: 12px monospace;
+    color: white;
+    position: relative;
+    left: 3px;
+    bottom: 2px;
+}

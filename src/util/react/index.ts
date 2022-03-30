@@ -1,3 +1,7 @@
 import RenderableContent from './RenderableContent';
 
-export { RenderableContent };
+function renderContent(content: RenderableContent, props?: any) {
+    return typeof content === 'function' ? content(props) : content;
+}
+
+export { RenderableContent, renderContent };
