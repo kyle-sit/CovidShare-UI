@@ -1,6 +1,12 @@
-import React from 'react';
 import './App.css';
+
+import React from 'react';
+
+import { useNumbersAndStrings } from './state/state.hooks';
+
 import { Banner, ErrorBoundary, PortalContainer, ResizableContainer, ResizablePane } from './core';
+
+import { Size } from './core/ResizableContainer/ResizableContainer';
 
 function App() {
     // Get ref to the resize container so we can forcibly update its panes when the user resizes window
@@ -15,6 +21,14 @@ function App() {
             window.removeEventListener('resize', resetSizes);
         };
     }, []);
+
+    // Hook to access redux state numbers and strings
+    const [numbers, strings, setNumbers, setStrings] = useNumbersAndStrings();
+
+    const resizeCallback = (sizes: Size[]) => {
+        setNumbers(sizes.map((s) => parseInt(s.width, 10)));
+        setStrings(sizes.map((s) => s.height));
+    };
 
     return (
         <div className="App">
@@ -32,12 +46,13 @@ function App() {
                     width="100%"
                     height="100%"
                     ref={resizeContainer}
+                    onResizeStop={resizeCallback}
                 >
                     <ResizablePane width="20%" height="100%">
-                        <div>Pane 1</div>
+                        <div>{numbers}</div>
                     </ResizablePane>
                     <ResizablePane>
-                        <div>Pane 2</div>
+                        <div>{strings}</div>
                     </ResizablePane>
                 </ResizableContainer>
             </ErrorBoundary>

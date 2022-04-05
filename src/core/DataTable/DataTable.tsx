@@ -88,7 +88,7 @@ export const DataTable: React.FC<DataTableProps> = ({
 }) => {
     if (!columns.length) {
         console.warn('Invalid Data Table: 0 columns specified');
-        return;
+        return <div />;
     }
 
     // Ref to table div - used to calculate height of body
@@ -111,8 +111,6 @@ export const DataTable: React.FC<DataTableProps> = ({
     const [hiddenCols, setHiddenCols] = React.useState(fill(Array(columns.length), false));
     // Whether pixel widths need to be reset due to a column being toggled or by user request
     const [resetWidths, setResetWidths] = React.useState(false);
-    // Whether the user made columns changes to the table - used to prevent auto-sizing after user changes
-    const [userAdjusted, setUserAdjusted] = React.useState(false);
 
     // On first render hide columns specified by user
     React.useEffect(() => setHiddenCols(columns.map((c) => c.hidden)), []);
@@ -192,7 +190,6 @@ export const DataTable: React.FC<DataTableProps> = ({
         setWidths(newWidths);
         setTotalWidth(getTotalWidth(header.current, body.current, multiSelect));
         onColumnsResized(newWidths);
-        setUserAdjusted(true);
     };
 
     const handleColumnToggled = (colIndex) => {
@@ -200,7 +197,6 @@ export const DataTable: React.FC<DataTableProps> = ({
         newHiddenCols[colIndex] = !newHiddenCols[colIndex];
         setHiddenCols(newHiddenCols);
         setResetWidths(true);
-        setUserAdjusted(true);
         onColumnToggled(columns[colIndex].colKey, newHiddenCols[colIndex]);
     };
 
@@ -454,10 +450,12 @@ function useContainerResize(element: Element) {
     const [size, setSize] = React.useState({ width: 0, height: 0 });
     React.useLayoutEffect(() => {
         if (!element) {
+            // @ts-ignore
             return;
         }
         const parent = element.parentElement;
         if (!parent) {
+            // @ts-ignore
             return;
         }
         elementResizeEvent(
