@@ -36,7 +36,7 @@ export const IconButton: React.FC<IconButtonProps> = (props) => {
     return (
         <div id={props.id || undefined} className="icon-button" style={props.iconClass ? {} : size}>
             {props.iconSrc ? (
-                <img className={`${classNames}`} style={size} src={props.iconSrc} {...commonProps} />
+                <img className={`${classNames}`} style={size} src={props.iconSrc} {...commonProps} alt="" />
             ) : (
                 <span className={`${classNames} ${props.iconClass}`} {...commonProps} />
             )}

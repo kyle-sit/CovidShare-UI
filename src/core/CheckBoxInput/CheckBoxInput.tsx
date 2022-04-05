@@ -4,7 +4,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 import autobind from 'autobind-decorator';
 
-import { RenderableContent, renderContent, isIE } from '../../util';
+import { RenderableContent, renderContent } from '../../util';
 
 export interface CheckBoxInputProps {
     // Whether or not the checkbox is checked
@@ -24,8 +24,6 @@ export interface CheckBoxInputProps {
     // Custom id
     id?: string;
 }
-
-const IS_IE = isIE();
 
 @autobind
 export default class CheckBoxInput extends React.Component<CheckBoxInputProps, {}> {

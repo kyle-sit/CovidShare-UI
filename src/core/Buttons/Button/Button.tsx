@@ -20,37 +20,22 @@ interface Props {
         be children of a buttons) */
     useDiv?: boolean;
     /** ref to the button element */
-    buttonRef?: React.MutableRefObject<HTMLButtonElement>;
-    divRef?: React.MutableRefObject<HTMLDivElement>;
-    /** children to render in button */
-    children?: React.ReactNode;
+    callbackRef?: (el: HTMLButtonElement | HTMLDivElement) => void;
 }
 
-export const Button: React.FC<Props> = ({
-    className,
-    useDiv,
-    children,
-    disabled,
-    buttonRef,
-    divRef,
-    ...remainingProps
-}) => {
+export const Button: React.FC<Props> = (
+    { className, useDiv, children, disabled, callbackRef, ...remainingProps },
+    forwardedRef
+) => {
     const classes = classnames(className, disabled && 'disabled');
 
     const allProps = {
         className: classes,
         disabled,
+        ref: callbackRef || (forwardedRef as any),
         ...remainingProps,
     };
 
-    const button = useDiv ? (
-        <div ref={divRef} {...allProps}>
-            {children}
-        </div>
-    ) : (
-        <button ref={buttonRef} {...allProps}>
-            {children}
-        </button>
-    );
+    const button = useDiv ? <div {...allProps}>{children}</div> : <button {...allProps}>{children}</button>;
     return button;
 };

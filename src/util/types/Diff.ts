@@ -15,7 +15,6 @@
  * type TypeC = Diff<keyof TypeA, keyof TypeB>; // 'a' | 'b'
  *
  */
-type Diff<T extends string | number | symbol, U extends string | number | symbol> = ({ [P in T]: P } & 
-    { [P in U]: never } & { [x: string]: never })[T];
-
-export default Diff;
+export type Diff<T extends string | number | symbol, U extends string | number | symbol> = ({ [P in T]: P } & {
+    [P in U]: never;
+} & { [x: string]: never })[T];

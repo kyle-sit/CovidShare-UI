@@ -1,0 +1,68 @@
+li.dropdown {
+    list-style: none;
+}
+
+div.dropdown {
+    overflow: visible !important;
+}
+
+.dropdown-menu__title_full {
+    width: 100%;
+    display: inline-block;
+}
+
+.dropdown-menu.dropdown-menu__left {
+    left: -100%;
+    top: -8px;
+}
+
+.dropdown-menu.dropdown-menu__right {
+    left: calc(100% - 1px);
+    top: -8px;
+}
+
+.dropup .dropdown-menu__left {
+    width: 100%;
+}
+
+.dropup .dropdown-menu__right,
+.dropup .dropdown-menu__left {
+    bottom: -8px;
+}
+
+.dropdown-toggle .caret.caret-right {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid;
+    display: inline-block;
+    height: 0;
+    vertical-align: middle;
+    width: 0;
+    margin-top: -1px;
+}
+
+.dropdown-toggle .caret.dropdown-menu__caret--hidden {
+    display: none;
+}
+
+.menu-item__title {
+    left: 4px;
+}
+
+.menu-item__title > .icon-check,
+.dropdown-toggle > .icon-check {
+    left: 4px;
+    font-size: 14px;
+    position: absolute;
+}
+
+.menu-item__key {
+    position: absolute;
+    right: 4px;
+}
+
+/* Hide dividers that begin or end a list */
+.dropdown-menu > li.divider:last-child,
+.dropdown-menu > li.divider:first-child {
+    display: none;
+}

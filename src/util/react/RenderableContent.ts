@@ -3,6 +3,4 @@
  *
  * Often used as a type for passing in "render props"
  */
-type RenderableContent<T = any> = string | number | JSX.Element | ((props?: T) => string | number | JSX.Element);
-
-export default RenderableContent;
+export type RenderableContent<T = any> = string | number | JSX.Element | ((props?: T) => string | number | JSX.Element);

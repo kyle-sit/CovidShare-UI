@@ -1,5 +1,5 @@
 import StringMap from './StringMap';
-import Diff from './Diff';
-import Omit from './Omit';
 
-export { StringMap, Diff, Omit };
+export * from './Diff';
+export * from './Omit';
+export { StringMap };

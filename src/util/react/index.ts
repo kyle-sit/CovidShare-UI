@@ -1,7 +1,8 @@
-import RenderableContent from './RenderableContent';
+import { RenderableContent } from './RenderableContent';
 
 function renderContent(content: RenderableContent, props?: any) {
     return typeof content === 'function' ? content(props) : content;
 }
 
-export { RenderableContent, renderContent };
+export * from './RenderableContent';
+export { renderContent };
