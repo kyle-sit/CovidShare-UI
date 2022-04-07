@@ -1,0 +1,35 @@
+// Flexbox utility classes
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-label {
+    font-weight: bold;
+    width: 5em;
+    margin-right: 0.5em;
+    &.md {
+        width: 5em;
+    }
+    &.sm {
+        width: auto;
+    }
+    &.lg {
+        width: 10em;
+    }
+}
+
+.flex-col {
+    flex: 1;
+}
+.flex-col-2 {
+    flex: 2;
+}
+.flex-col-3 {
+    flex: 3;
+}
+.flex-col-4 {
+    flex: 4;
+}

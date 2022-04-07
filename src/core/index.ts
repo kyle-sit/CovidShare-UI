@@ -1,4 +1,4 @@
-import { Banner } from './Banner/Banner';
+import { NavBar } from './NavBar/NavBar';
 import { Button, IconButton, ButtonGroup } from './Buttons';
 import CheckBoxInput from './CheckBoxInput/CheckBoxInput';
 import DropdownMenu from './DropdownMenu';
@@ -11,7 +11,6 @@ import Window from './Window/Window';
 import Toast from './Toast/Toast';
 
 export {
-    Banner,
     Button,
     ButtonGroup,
     CheckBoxInput,
@@ -20,6 +19,7 @@ export {
     IconButton,
     ErrorBoundary,
     Loader,
+    NavBar,
     PORTAL_ID,
     Portal,
     PortalContainer,

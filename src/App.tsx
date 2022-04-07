@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useNumbersAndStrings } from './state/state.hooks';
 
-import { Banner, ErrorBoundary, PortalContainer, ResizableContainer, ResizablePane } from './core';
+import { NavBar, ErrorBoundary, PortalContainer, ResizableContainer, ResizablePane } from './core';
 
 import { Size } from './core/ResizableContainer/ResizableContainer';
 
@@ -32,13 +32,7 @@ function App() {
 
     return (
         <div className="App">
-            <Banner
-                title="COVID-SHARE"
-                message={'Got Covid? Get Better.'}
-                gradient={true}
-                color={'#a62828'}
-                secondColor={'#d6722b'}
-            />
+            <NavBar title="COVID-SHARE" slogan="Got COVID? Get Better." logoPath="./assets/covid_logo.svg" />
             <ErrorBoundary>
                 <ResizableContainer
                     id={'app-container'}
