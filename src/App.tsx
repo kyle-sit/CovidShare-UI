@@ -32,7 +32,7 @@ function App() {
 
     return (
         <div className="App">
-            <NavBar title="COVID-SHARE" slogan="Got COVID? Get Better." logoPath="./assets/covid_logo.svg" />
+            <NavBar title="COVID-SHARE" slogan="Got COVID? Get Better." logoPath="./images/covid_logo.svg" />
             <ErrorBoundary>
                 <ResizableContainer
                     id={'app-container'}
