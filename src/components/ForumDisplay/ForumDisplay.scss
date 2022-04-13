@@ -1,0 +1,7 @@
+@use '../../scss/custom.scss' as *;
+
+.forum-display {
+    height: 100%;
+    width: 100%;
+    background: rgba($secondary, 0.95);
+}

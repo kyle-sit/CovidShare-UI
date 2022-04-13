@@ -7,6 +7,8 @@ import { useNumbersAndStrings } from './state/state.hooks';
 import { NavBar, ErrorBoundary, PortalContainer, ResizableContainer, ResizablePane } from './core';
 
 import { Size } from './core/ResizableContainer/ResizableContainer';
+import ForumNavigator from './components/ForumNavigator/ForumNavigator';
+import ForumDisplay from './components/ForumDisplay/ForumDisplay';
 
 function App() {
     // Get ref to the resize container so we can forcibly update its panes when the user resizes window
@@ -43,10 +45,10 @@ function App() {
                     onResizeStop={resizeCallback}
                 >
                     <ResizablePane width="20%" height="100%">
-                        <div>{numbers}</div>
+                        <ForumNavigator />
                     </ResizablePane>
                     <ResizablePane>
-                        <div>{strings}</div>
+                        <ForumDisplay />
                     </ResizablePane>
                 </ResizableContainer>
             </ErrorBoundary>
