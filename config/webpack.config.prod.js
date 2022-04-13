@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = 'mini-css-extract-plugin';
+const { MiniCssExtractPlugin } = 'mini-css-extract-plugin';
 const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
 const path = require('path');
 const padStart = require('lodash.padStart');

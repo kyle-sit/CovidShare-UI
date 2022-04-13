@@ -3,3 +3,8 @@
 .navbar {
     background: linear-gradient(to right, rgba($primary, 0.95), rgba($secondary, 0.95));
 }
+
+.navbar-text {
+    font-size: 1.5rem;
+    color: black !important;
+}

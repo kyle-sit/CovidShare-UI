@@ -14,7 +14,7 @@ export const NavBar: React.FC<Props> = (props) => {
             <div className="container-fluid">
                 <div className="navbar-brand">
                     {props.title}
-                    <img src={props.logoPath} alt="" width="40" height="40" style={{ marginLeft: '5px' }} />
+                    <img src={props.logoPath} alt="" width="60" height="60" style={{ marginLeft: '5px' }} />
                 </div>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
